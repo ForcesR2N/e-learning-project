@@ -1,0 +1,29 @@
+{
+    "datas": [
+      {
+        "title": "Flutter Tutorial For Beginner",
+        "image": "lib/image/thumbnail_1.jpeg",
+        "video_url": "https://youtu.be/TclK5gNM_PM?si=OZuC8W7ybsD_MshJ",
+        "description": "Flutter adalah toolkit UI open-source dari Google yang digunakan untuk membangun aplikasi yang dikompilasi secara native untuk iOS, Android, web, dan desktop dari satu basis kode single codebase. Flutter menawarkan pengembangan cepat dengan fitur seperti Hot Reload dan menyediakan kumpulan widget yang dapat disesuaikan untuk membuat antarmuka pengguna yang indah dan responsif. Aplikasi Flutter memiliki kinerja native dan dibuat menggunakan bahasa pemrograman Dart."
+      },
+      {
+        "title": "Flutter Tutorial 2",
+        "image": "lib/image/landing_page.png",
+        "video_url": "https://www.youtube.com/watch?v=video2",
+         "description": "Flutter adalah toolkit UI open-source dari Google yang digunakan untuk membangun aplikasi yang dikompilasi secara native untuk iOS, Android, web, dan desktop dari satu basis kode single codebase. Flutter menawarkan pengembangan cepat dengan fitur seperti Hot Reload dan menyediakan kumpulan widget yang dapat disesuaikan untuk membuat antarmuka pengguna yang indah dan responsif. Aplikasi Flutter memiliki kinerja native dan dibuat menggunakan bahasa pemrograman Dart."
+      },
+      {
+        "title": "Flutter Tutorial 3",
+        "image": "lib/image/landing_page.png",
+        "video_url": "https://www.youtube.com/watch?v=video3",
+         "description": "Flutter adalah toolkit UI open-source dari Google yang digunakan untuk membangun aplikasi yang dikompilasi secara native untuk iOS, Android, web, dan desktop dari satu basis kode single codebase. Flutter menawarkan pengembangan cepat dengan fitur seperti Hot Reload dan menyediakan kumpulan widget yang dapat disesuaikan untuk membuat antarmuka pengguna yang indah dan responsif. Aplikasi Flutter memiliki kinerja native dan dibuat menggunakan bahasa pemrograman Dart."
+      },
+      {
+        "title": "Flutter Tutorial 4",
+        "image": "lib/image/landing_page.png",
+        "video_url": "https://www.youtube.com/watch?v=video4",
+         "description": "Flutter adalah toolkit UI open-source dari Google yang digunakan untuk membangun aplikasi yang dikompilasi secara native untuk iOS, Android, web, dan desktop dari satu basis kode single codebase. Flutter menawarkan pengembangan cepat dengan fitur seperti Hot Reload dan menyediakan kumpulan widget yang dapat disesuaikan untuk membuat antarmuka pengguna yang indah dan responsif. Aplikasi Flutter memiliki kinerja native dan dibuat menggunakan bahasa pemrograman Dart."
+      }
+    ]
+  }
+  
