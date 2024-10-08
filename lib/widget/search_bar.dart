@@ -9,7 +9,10 @@ class MySearchBar extends StatelessWidget {
       height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30), color: Colors.grey.shade200),
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey.shade200,
+        border: Border.all(color: Colors.black),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: Row(
         children: [

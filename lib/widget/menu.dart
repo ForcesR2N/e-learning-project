@@ -56,20 +56,37 @@ class _MenuState extends State<Menu> {
           child: Container(
             padding: EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: AssetImage(data.image),
-              ),
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            child: Center(
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  data.title,
-                  style: TextStyle(fontSize: 15, color: Colors.black),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      data.image,
+                      height: 120,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    data.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Colors.black,
+                    ),
+                    maxLines: null,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+              ],
             ),
           ),
         );

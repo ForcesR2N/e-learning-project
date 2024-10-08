@@ -20,19 +20,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     int currentSlider = 0;
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: Icon(
-              CupertinoIcons.profile_circled,
-              color: Colors.yellow.shade400,
-              size: 40,
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(12),
@@ -40,10 +27,10 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 25, left: 5),
+                padding: EdgeInsets.only(top: 60, bottom: 20, left: 5),
                 child: Obx(
                   () => Text(
-                    "Welcome!\nHallo ${controller.name}",
+                    "Selamat Datang!\nHallo ${controller.name}",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                 ),
@@ -59,12 +46,9 @@ class _HomeState extends State<Home> {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
               MySearchBar(),
-              SizedBox(
-                height: 10,
-              ),
               Menu(),
             ],
           ),

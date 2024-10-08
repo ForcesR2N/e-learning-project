@@ -1,3 +1,5 @@
+import 'package:e_learning/model/data.json.dart';
+import 'package:e_learning/widget/like_dislike.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -38,14 +40,19 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
+   final data = Data(
+      title: widget.title,
+      description: widget.description,
+      image: "assets/placeholder.png", 
+      videoUrl: widget.videoUrl,
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text("RIZZ CODE"),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              const EdgeInsets.all(16.0), // Adding padding around the content
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -63,6 +70,8 @@ class _VideoPageState extends State<VideoPage> {
                   color: Colors.black,
                 ),
               ),
+              SizedBox(height: 10),
+              LikeDislikeWidget(data: data),
               SizedBox(height: 10),
               Text(
                 widget.description,
