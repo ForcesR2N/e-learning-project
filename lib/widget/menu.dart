@@ -49,7 +49,8 @@ class _MenuState extends State<Menu> {
               () => VideoPage(
                 videoUrl: data.videoUrl,
                 title: data.title,
-                description: data.description,
+                description: data.description, 
+                image: data.image,
               ),
             );
           },

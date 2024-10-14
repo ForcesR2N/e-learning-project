@@ -7,9 +7,10 @@ class VideoPage extends StatefulWidget {
   final String videoUrl;
   final String title;
   final String description;
+  final String image;
 
   VideoPage(
-      {required this.videoUrl, required this.title, required this.description});
+      {required this.videoUrl, required this.title, required this.description, required this.image});
 
   @override
   _VideoPageState createState() => _VideoPageState();
@@ -40,10 +41,10 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-   final data = Data(
+    final data = Data(
       title: widget.title,
       description: widget.description,
-      image: "assets/placeholder.png", 
+      image: widget.image,
       videoUrl: widget.videoUrl,
     );
     return Scaffold(

@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:e_learning/controller/bottom_navbar_controller.dart';
 import 'package:e_learning/controller/controller.dart';
 import 'package:e_learning/pages/saved_page.dart';
@@ -34,7 +33,7 @@ class HomePage extends StatelessWidget {
                 ),
                 label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag), label: "Cart"),
+                icon: Icon(Icons.shopping_bag), label: "Saved"),
             BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.profile_circled), label: "Profile"),
           ],

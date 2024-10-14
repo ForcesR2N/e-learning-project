@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_learning/model/task_model.dart';
 import 'package:e_learning/database/task_controller.dart';
 
 class SavedPage extends StatelessWidget {
@@ -12,32 +11,39 @@ class SavedPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Saved Tasks"),
       ),
-      body: Obx(
-        () {
-          if (taskController.tasks.isEmpty) {
-            return Center(
-              child: Text("No saved tasks."),
+      body: Obx(() {
+        var savedTasks = taskController.getSavedTasks();  // Mengambil task yang tersimpan
+        
+        if (savedTasks.isEmpty) {
+          return Center(child: Text("No saved tasks."));
+        }
+        
+        return ListView.builder(
+          itemCount: savedTasks.length,
+          itemBuilder: (context, index) {
+            final task = savedTasks[index];
+
+            return ListTile(
+              leading: task.image != null
+                  ? Image.asset(task.image!, fit: BoxFit.cover)
+                  : Image.asset('assets/image/landing_page.png'),
+              title: Text(task.title),
+              subtitle: Text(
+                task.description,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {
+                  taskController.deleteTask(task.id!);  // Menghapus task
+                  Get.snackbar('Deleted', 'Task "${task.title}" deleted.');
+                },
+              ),
             );
-          }
-          return ListView.builder(
-            itemCount: taskController.tasks.length,
-            itemBuilder: (context, index) {
-              final task = taskController.tasks[index];
-              return ListTile(
-                title: Text(task.title),
-                subtitle: Text(task.description),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    taskController.deleteTask(task.id!); 
-                    Get.snackbar('Deleted', 'Task "${task.title}" deleted.');
-                  },
-                ),
-              );
-            },
-          );
-        },
-      ),
+          },
+        );
+      }),
     );
   }
 }
