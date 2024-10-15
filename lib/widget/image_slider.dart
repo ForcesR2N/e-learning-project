@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class ImageSlider extends StatelessWidget {
   final Function(int) onChange;
   final int currentSlider;
-  const ImageSlider(
-      {super.key, required this.onChange, required this.currentSlider});
+  const ImageSlider({super.key, required this.onChange, required this.currentSlider});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +14,9 @@ class ImageSlider extends StatelessWidget {
           height: 220,
           width: double.infinity,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(20), // More rounded corners for images
             child: PageView(
               scrollDirection: Axis.horizontal,
-              allowImplicitScrolling: true,
               onPageChanged: onChange,
               physics: ClampingScrollPhysics(),
               children: [
@@ -39,7 +37,7 @@ class ImageSlider extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          bottom: 5,
+          bottom: 10,
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Row(
@@ -47,15 +45,15 @@ class ImageSlider extends StatelessWidget {
               children: List.generate(
                 3,
                 (index) => AnimatedContainer(
-                  duration: Duration(microseconds: 500),
+                  duration: Duration(milliseconds: 300),
                   width: currentSlider == index ? 15 : 8,
                   height: 8,
-                  margin: EdgeInsets.only(right: 3),
+                  margin: EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: currentSlider == index
-                        ? AppColor.primaryColor
-                        : Colors.white,
+                        ? AppColor.primaryBlue
+                        : Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),

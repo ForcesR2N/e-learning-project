@@ -1,3 +1,4 @@
+import 'package:e_learning/component/my_color.dart';
 import 'package:e_learning/model/data.json.dart';
 import 'package:e_learning/widget/like_dislike.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,10 @@ class VideoPage extends StatefulWidget {
   final String image;
 
   VideoPage(
-      {required this.videoUrl, required this.title, required this.description, required this.image});
+      {required this.videoUrl,
+      required this.title,
+      required this.description,
+      required this.image});
 
   @override
   _VideoPageState createState() => _VideoPageState();
@@ -48,8 +52,14 @@ class _VideoPageState extends State<VideoPage> {
       videoUrl: widget.videoUrl,
     );
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        title: Text("RIZZ CODE"),
+        title: Text("Profile", style: TextStyle(color: Colors.white)),
+        backgroundColor: AppColor.primaryBlue,
+        elevation: 0,
+        centerTitle: true,
+        automaticallyImplyLeading: true,
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -73,6 +83,15 @@ class _VideoPageState extends State<VideoPage> {
               ),
               SizedBox(height: 10),
               LikeDislikeWidget(data: data),
+              SizedBox(height: 10),
+              Text(
+                "Description",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
               SizedBox(height: 10),
               Text(
                 widget.description,

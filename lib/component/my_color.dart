@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color fontAddNumber = Color(0xFF606060);
-  static const Color buttonGreen = Color(0xFF006D0A);
-  static const Color backgroundColor = Color(0xFFF0F3BD);
-  static const Color textColor = Color(0xFF333333);
-  static const Color bgNomorHp = Color(0xFFE3E2E2);
-  static const Color primaryColor = Color(0xFF67b3f4);
-  static const Color secondaryColor = Color(0xFFb8dcf8);
-  static const kcontentColor = Color(0xffF5F5F5);
-  static const kprimaryColor = Color(0xffff660e);
+  static const Color primaryBlue = Color(0xFF4A90E2);  // Soft blue for main accents
+  static const Color secondaryBlue = Color(0xFF50BFE6); // Lighter blue for secondary accents
+  static const Color backgroundColor = Color(0xFFFFFFFF); // White background
+  static const Color textColor = Color(0xFF333333); // Dark grey text color
+  static const Color inputFieldColor = Color(0xFFF5F5F5); // Light grey for input fields
+  static const Color borderColor = Color(0xFFE0E0E0); // Light grey for borders
+  static const Color buttonColor = Color(0xFF4A90E2); // Blue for buttons
+  static const Color linkColor = Color(0xFF4A90E2); // Blue for links
 }

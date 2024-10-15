@@ -1,3 +1,4 @@
+import 'package:e_learning/component/my_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,66 +25,61 @@ class _LikeDislikeWidgetState extends State<LikeDislikeWidget> {
   @override
   void initState() {
     super.initState();
-    checkIfSaved(); // Check if the task is saved on widget init
+    checkIfSaved();
   }
 
-  // Check if the task is already saved in the database
   void checkIfSaved() async {
-    print('DEBUG: Checking if task "${widget.data.title}" is saved...');
+    TaskModel? savedTask =
+        await taskController.getTaskByTitle(widget.data.title);
 
-    try {
-      TaskModel? savedTask =
-          await taskController.getTaskByTitle(widget.data.title);
-
-      setState(() {
+    setState(
+      () {
         if (savedTask != null) {
-          print(
-              'DEBUG: Task found: ${savedTask.title}, isCompleted (Saved Status): ${savedTask.isCompleted}');
-          isSaved = savedTask.isCompleted; // Update UI sesuai database
+          isSaved = savedTask.isCompleted;
           savedTaskId = savedTask.id;
         } else {
-          print('DEBUG: Task not found in database. Setting isSaved to false.');
           isSaved = false;
           savedTaskId = null;
         }
-      });
-    } catch (e) {
-      print('ERROR: Error checking saved state: $e');
-      setState(() {
-        isSaved = false;
-        savedTaskId = null;
-      });
-    }
+      },
+    );
   }
 
-  // Toggle the saved/unsaved state
   void toggleSaved() async {
     if (isSaved == true && savedTaskId != null) {
-      // Hapus status saved
       await taskController.updateTaskStatus(savedTaskId!, 0);
-      Get.snackbar('Removed', 'Task "${widget.data.title}" removed from saved',
-          duration: Duration(seconds: 1), snackPosition: SnackPosition.BOTTOM);
+      await taskController.deleteTask(savedTaskId!);
+      CustomSnackbar.showSnackbar(
+        title: 'Removed',
+        message: 'Task "${widget.data.title}" removed from saved',
+        backgroundColor: Colors.redAccent,
+        icon: Icons.delete,
+      );
       setState(() {
         isSaved = false;
       });
     } else if (isSaved == false) {
-      // Simpan status saved
       TaskModel task = TaskModel(
         title: widget.data.title,
         description: widget.data.description,
         image: widget.data.image,
-        isCompleted: true, // Mark as saved
+        isCompleted: true,
       );
       savedTaskId = await taskController.addTask(task);
-      Get.snackbar('Saved', 'Task "${widget.data.title}" added to saved',
-          duration: Duration(seconds: 1), snackPosition: SnackPosition.BOTTOM);
+      print('DEBUG: Task "${task.title}" added with ID: $savedTaskId');
+      CustomSnackbar.showSnackbar(
+        title: 'Saved',
+        message: 'Task "${widget.data.title}" saved successfully',
+        backgroundColor: Colors.green,
+        icon: Icons.check,
+      );
+
       setState(() {
         isSaved = true;
       });
     }
   }
 
-  // Toggle like/dislike status
   void toggleLike() {
     setState(() {
       isLiked = !isLiked;
@@ -125,11 +121,10 @@ class _LikeDislikeWidgetState extends State<LikeDislikeWidget> {
           iconSize: 35,
           onPressed: toggleSaved,
           icon: isSaved == null
-              ? Icon(Icons
-                  .hourglass_empty) // Loading state while checking saved status
+              ? Icon(Icons.bookmark_border)
               : isSaved == true
-                  ? Icon(Icons.bookmark) // Saved icon
-                  : Icon(Icons.bookmark_border), // Unsaved icon
+                  ? Icon(Icons.bookmark)
+                  : Icon(Icons.bookmark_border),
           color: isSaved == true ? Colors.blue : Colors.grey,
         ),
       ],
