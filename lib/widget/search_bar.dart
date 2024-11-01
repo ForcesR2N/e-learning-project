@@ -1,16 +1,21 @@
+import 'package:e_learning/utils/responsive_layout.dart';
 import 'package:flutter/material.dart';
 
 class MySearchBar extends StatelessWidget {
-  const MySearchBar({super.key});
-
   @override
   Widget build(BuildContext context) {
+    return Responsive(
+      mobile: _buildSearchBar(context),
+      tablet: _buildSearchBar(context, isTablet: true),
+    );
+  }
+
+  Widget _buildSearchBar(BuildContext context, {bool isTablet = false}) {
     return Container(
-      height: 50,  // Slightly increased height for better usability
-      width: double.infinity,
+      height: isTablet ? 60 : 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30), // More rounded corners for modern look
-        color: Colors.white, // Clean white background
+        borderRadius: BorderRadius.circular(context.radius),
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -19,32 +24,18 @@ class MySearchBar extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      child: Row(
-        children: [
-          Icon(
-            Icons.search,
-            color: Colors.grey,
-            size: 28,
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search...",
+          hintStyle: TextStyle(fontSize: context.fontSize),
+          prefixIcon: Icon(Icons.search, size: context.iconSize),
+          suffixIcon: Icon(Icons.mic, size: context.iconSize),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: context.spacing,
+            vertical: isTablet ? 18 : 15,
           ),
-          SizedBox(width: 10),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search...",
-                border: InputBorder.none,
-              ),
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.mic,
-              color: Colors.grey,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

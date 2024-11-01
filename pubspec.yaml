@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.3.0
   youtube_player_flutter: ^9.0.4
   sqflite: ^2.4.0
+  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:

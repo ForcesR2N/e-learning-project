@@ -7,6 +7,12 @@ class TaskController extends GetxController {
   static Database? _db;
   var tasks = <TaskModel>[].obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    loadTasks(); 
+  }
+
   Future<Database?> get db async {
     if (_db == null) {
       _db = await initDB();

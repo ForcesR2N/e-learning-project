@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 
 class CustomSnackbar {
   static void showSnackbar({
-    required String title, 
-    required String message, 
-    Color backgroundColor = Colors.blueAccent, 
-    Color textColor = Colors.white, 
-    IconData? icon = Icons.info, 
+    required String title,
+    required String message,
+    Color backgroundColor = Colors.blueAccent,
+    Color textColor = Colors.white,
+    IconData? icon = Icons.info,
     Duration duration = const Duration(seconds: 2),
   }) {
     Get.snackbar(
@@ -30,6 +30,7 @@ class CustomSnackbar {
       ],
       isDismissible: true,
       forwardAnimationCurve: Curves.easeOutBack,
+      messageText: Text(message, maxLines: 1, overflow: TextOverflow.ellipsis,),
     );
   }
 }

@@ -30,8 +30,8 @@ class SavedPage extends StatelessWidget {
           itemCount: savedTasks.length,
           itemBuilder: (context, index) {
             final task = savedTasks[index];
-
             return Card(
+              color: AppColor.backgroundColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
