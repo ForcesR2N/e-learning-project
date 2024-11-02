@@ -18,4 +18,10 @@ class AppColor {
   static const Color errorColor = Color(0xFFe74c3c); // Red for error messages
   static const Color warningColor = Color(0xFFf39c12); // Orange for warnings
   static const Color disabledColor = Color(0xFF95a5a6);
+
+    static const LinearGradient primaryGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [primaryBlue, secondaryBlue],
+  );
 }

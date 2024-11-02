@@ -22,7 +22,7 @@ class ProfilePage extends StatelessWidget {
         screenWidth >= tabletBreakpoint && screenWidth < desktopBreakpoint;
 
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.primaryBlue,
       appBar: AppBar(
         title: Text("Profile", style: TextStyle(color: Colors.white)),
         backgroundColor: AppColor.primaryBlue,

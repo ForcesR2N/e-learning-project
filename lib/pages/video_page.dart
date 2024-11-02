@@ -78,7 +78,7 @@ class _VideoPageState extends State<VideoPage> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColor.textColor,
                 ),
               ),
               SizedBox(height: 10),
@@ -89,7 +89,7 @@ class _VideoPageState extends State<VideoPage> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: AppColor.textColor,
                 ),
               ),
               SizedBox(height: 10),
@@ -98,7 +98,7 @@ class _VideoPageState extends State<VideoPage> {
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black54,
+                  color: AppColor.textColor,
                 ),
               ),
             ],
