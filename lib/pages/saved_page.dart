@@ -57,9 +57,11 @@ class SavedPage extends StatelessWidget {
                 ),
                 title: Text(
                   task.title,
+                  maxLines: 1,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: AppColor.textColor,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 subtitle: Text(

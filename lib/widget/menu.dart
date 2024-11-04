@@ -137,7 +137,7 @@ class Menu extends StatelessWidget {
                     borderRadius: BorderRadius.circular(context.radius),
                     child: Image.asset(
                       data.image,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.scaleDown,
                       width: double.infinity,
                     ),
                   ),
