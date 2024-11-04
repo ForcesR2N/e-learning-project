@@ -3,48 +3,67 @@ import 'package:get/get.dart';
 import 'package:e_learning/controller/controller.dart';
 import 'package:e_learning/component/my_color.dart';
 import 'package:e_learning/pages/login_page.dart';
+import 'package:e_learning/utils/responsive_layout.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  static const double tabletBreakpoint = 600;
-  static const double desktopBreakpoint = 1200;
-
   @override
   Widget build(BuildContext context) {
-    final Controller controller = Get.find();
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    final isTablet =
-        screenWidth >= tabletBreakpoint && screenWidth < desktopBreakpoint;
-
     return Scaffold(
       backgroundColor: AppColor.primaryBlue,
-      appBar: AppBar(
-        title: Text("Profile", style: TextStyle(color: Colors.white)),
-        backgroundColor: AppColor.primaryBlue,
-        elevation: 0,
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(isTablet ? 24.0 : 16.0),
-            child: isLandscape
-                ? _buildLandscapeLayout(
-                    controller, screenWidth, screenHeight, isTablet)
-                : _buildPortraitLayout(controller, isTablet),
-          ),
-        ),
+      body: Responsive(
+        mobile: _buildProfileContent(context),
+        tablet: _buildProfileContent(context, isTablet: true),
       ),
     );
   }
 
-  Widget _buildPortraitLayout(Controller controller, bool isTablet) {
+  Widget _buildProfileContent(BuildContext context, {bool isTablet = false}) {
+    final Controller controller = Get.find();
+    final isLandscape = Responsive.isLandscape(context);
+
+    return SafeArea(
+      child: Column(
+        children: [
+          _buildAppBar(context, isTablet),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(context.spacing),
+                child: isLandscape
+                    ? _buildLandscapeLayout(context, controller, isTablet)
+                    : _buildPortraitLayout(context, controller, isTablet),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context, bool isTablet) {
+    return Container(
+      padding: EdgeInsets.all(context.spacing),
+      color: AppColor.primaryBlue,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Profile",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: isTablet ? 30.0 : 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPortraitLayout(
+      BuildContext context, Controller controller, bool isTablet) {
     return Center(
       child: Container(
         constraints: BoxConstraints(
@@ -53,56 +72,55 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: isTablet ? 60 : 20),
-            _buildProfileImage(isTablet),
-            SizedBox(height: isTablet ? 30 : 20),
-            _buildUsername(controller, isTablet),
-            SizedBox(height: isTablet ? 60 : 40),
-            _buildInfoList(isTablet),
-            SizedBox(height: isTablet ? 60 : 40),
-            _buildLogoutButton(isTablet),
-            SizedBox(height: 20),
+            SizedBox(height: context.spacing * 2),
+            _buildProfileImage(context, isTablet),
+            SizedBox(height: context.spacing),
+            _buildUsername(context, controller, isTablet),
+            SizedBox(height: context.spacing * 2),
+            _buildInfoList(context, isTablet),
+            SizedBox(height: context.spacing * 2),
+            _buildLogoutButton(context, isTablet),
+            SizedBox(height: context.spacing),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildLandscapeLayout(Controller controller, double screenWidth,
-      double screenHeight, bool isTablet) {
+  Widget _buildLandscapeLayout(
+      BuildContext context, Controller controller, bool isTablet) {
     return Center(
       child: Container(
         constraints: BoxConstraints(
           maxWidth: isTablet ? 900 : double.infinity,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              flex: isTablet ? 2 : 4,
+              flex: 1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: isTablet ? 120 : 20),
-                  _buildProfileImage(isTablet),
-                  SizedBox(height: isTablet ? 30 : 20),
-                  _buildUsername(controller, isTablet),
+                  SizedBox(height: context.spacing),
+                  _buildProfileImage(context, isTablet),
+                  SizedBox(height: context.spacing),
+                  _buildUsername(context, controller, isTablet),
                 ],
               ),
             ),
-            SizedBox(width: isTablet ? 60 : 20),
+            SizedBox(width: context.spacing * 3),
             Expanded(
-              flex: isTablet ? 2 : 4,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: isTablet ? 120 : 40),
-                    _buildInfoList(isTablet),
-                    SizedBox(height: isTablet ? 40 : 20),
-                    _buildLogoutButton(isTablet),
-                  ],
-                ),
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: context.spacing * 2),
+                  _buildInfoList(context, isTablet),
+                  SizedBox(height: context.spacing * 3),
+                  _buildLogoutButton(context, isTablet),
+                ],
               ),
             ),
           ],
@@ -111,20 +129,21 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileImage(bool isTablet) {
+  Widget _buildProfileImage(BuildContext context, bool isTablet) {
     return CircleAvatar(
-      radius: isTablet ? 90 : 50,
+      radius: isTablet ? 100 : 50,
       backgroundImage: AssetImage('lib/image/profile_pic.jpg'),
       backgroundColor: AppColor.primaryBlue.withOpacity(0.2),
     );
   }
 
-  Widget _buildUsername(Controller controller, bool isTablet) {
+  Widget _buildUsername(
+      BuildContext context, Controller controller, bool isTablet) {
     return Obx(
       () => Text(
         controller.name.isNotEmpty ? controller.name.value : "Username",
         style: TextStyle(
-          fontSize: isTablet ? 35 : 22,
+          fontSize: isTablet ? context.fontSize * 2 : context.fontSize * 1.2,
           fontWeight: FontWeight.bold,
           color: AppColor.textColor,
         ),
@@ -132,11 +151,12 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoList(bool isTablet) {
+  Widget _buildInfoList(BuildContext context, bool isTablet) {
     return Container(
+      width: isTablet ? 500 : 350,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(isTablet ? 16 : 10),
+        borderRadius: BorderRadius.circular(context.radius),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -148,6 +168,7 @@ class ProfilePage extends StatelessWidget {
       child: Column(
         children: [
           _buildListTile(
+            context: context,
             icon: Icons.email,
             title: "Email Address",
             subtitle: "user@example.com",
@@ -155,6 +176,7 @@ class ProfilePage extends StatelessWidget {
           ),
           Divider(height: 1),
           _buildListTile(
+            context: context,
             icon: Icons.phone,
             title: "Phone Number",
             subtitle: "+62 8226 ****",
@@ -166,6 +188,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _buildListTile({
+    required BuildContext context,
     required IconData icon,
     required String title,
     required String subtitle,
@@ -173,8 +196,8 @@ class ProfilePage extends StatelessWidget {
   }) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(
-        horizontal: isTablet ? 24.0 : 16.0,
-        vertical: isTablet ? 8.0 : 4.0,
+        horizontal: context.spacing,
+        vertical: context.spacing / 2,
       ),
       leading: Icon(
         icon,
@@ -185,28 +208,29 @@ class ProfilePage extends StatelessWidget {
         title,
         style: TextStyle(
           fontWeight: FontWeight.w500,
-          fontSize: isTablet ? 20 : 16,
+          fontSize: isTablet ? 20 : 15,
         ),
       ),
       subtitle: Text(
         subtitle,
         style: TextStyle(
           color: Colors.grey[600],
-          fontSize: isTablet ? 16 : 14,
+          fontSize: isTablet ? 20 : 15,
         ),
       ),
       trailing: Icon(
         Icons.arrow_forward_ios,
         color: Colors.grey,
-        size: isTablet ? 20 : 16,
+        size: context.iconSize - 4,
       ),
       onTap: () {},
     );
   }
 
-  Widget _buildLogoutButton(bool isTablet) {
+  Widget _buildLogoutButton(BuildContext context, bool isTablet) {
     return Container(
-      width: isTablet ? 100 : 70,
+      width: isTablet ? 150 : 100,
+      height: isTablet ? 50 : 45,
       child: ElevatedButton(
         onPressed: () {
           Get.offAll(() => LoginPage());
@@ -215,11 +239,11 @@ class ProfilePage extends StatelessWidget {
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
           padding: EdgeInsets.symmetric(
-            vertical: isTablet ? 8.0 : 5.0,
-            horizontal: isTablet ? 16.0 : 10.0,
+            vertical: context.spacing / 2,
+            horizontal: context.spacing,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(isTablet ? 8 : 6),
+            borderRadius: BorderRadius.circular(context.radius / 2),
           ),
           elevation: isTablet ? 3 : 2,
         ),
@@ -227,7 +251,7 @@ class ProfilePage extends StatelessWidget {
           "Logout",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: isTablet ? 16 : 12,
+            fontSize: context.fontSize - 2,
           ),
         ),
       ),

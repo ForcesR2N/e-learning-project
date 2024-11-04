@@ -10,10 +10,10 @@ class Responsive extends StatelessWidget {
     this.tablet,
   });
 
-  static bool isMobile(BuildContext context) => 
+  static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 600;
 
-  static bool isTablet(BuildContext context) => 
+  static bool isTablet(BuildContext context) =>
       MediaQuery.of(context).size.width >= 600;
 
   static bool isLandscape(BuildContext context) =>
@@ -33,7 +33,7 @@ class Responsive extends StatelessWidget {
 }
 
 extension ResponsiveSize on BuildContext {
-  double get spacing => Responsive.isLandscape(this) 
+  double get spacing => Responsive.isLandscape(this)
       ? (Responsive.isMobile(this) ? 12.0 : 16.0)
       : (Responsive.isMobile(this) ? 16.0 : 24.0);
 
