@@ -9,6 +9,8 @@ class LoginPage extends StatefulWidget {
   final BottomNavController bottomNavController =
       Get.put(BottomNavController());
 
+  LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
