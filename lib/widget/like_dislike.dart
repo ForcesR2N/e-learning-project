@@ -9,7 +9,7 @@ import 'package:e_learning/model/data.json.dart';
 class LikeDislikeWidget extends StatefulWidget {
   final Data data;
 
-  LikeDislikeWidget({required this.data});
+  const LikeDislikeWidget({super.key, required this.data});
 
   @override
   _LikeDislikeWidgetState createState() => _LikeDislikeWidgetState();

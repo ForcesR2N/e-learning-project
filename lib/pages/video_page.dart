@@ -10,8 +10,8 @@ class VideoPage extends StatefulWidget {
   final String description;
   final String image;
 
-  VideoPage(
-      {required this.videoUrl,
+  const VideoPage(
+      {super.key, required this.videoUrl,
       required this.title,
       required this.description,
       required this.image});

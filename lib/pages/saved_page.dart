@@ -1,4 +1,3 @@
-// saved_page.dart
 import 'package:e_learning/component/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,8 @@ import 'package:e_learning/utils/responsive_layout.dart';
 
 class SavedPage extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
+
+  SavedPage({super.key});
 
   @override
   Widget build(BuildContext context) {

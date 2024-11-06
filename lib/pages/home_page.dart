@@ -7,7 +7,7 @@ import 'package:e_learning/pages/home.dart';
 import 'package:e_learning/pages/profile_page.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   final BottomNavController bottomNavController = Get.find();
 
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           child: menus[bottomNavController.selectedIndex.value],
         ),
         bottomNavigationBar: Container(
-          height: 90, // Increased height
+          height: 90, 
           decoration: BoxDecoration(
             color: AppColor.primaryBlue,
             boxShadow: [

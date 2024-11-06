@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:e_learning/component/my_color.dart';
 
 class ImageSlider extends StatefulWidget {
+  const ImageSlider({super.key});
+
   @override
   _ImageSliderState createState() => _ImageSliderState();
 }

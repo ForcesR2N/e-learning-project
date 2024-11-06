@@ -1,4 +1,3 @@
-// menu.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +9,7 @@ import 'package:e_learning/utils/responsive_layout.dart';
 
 class Menu extends StatelessWidget {
   final bool isSliver;
-  Menu({this.isSliver = true});
+  Menu({super.key, this.isSliver = true});
 
   final Future<List<Data>> _dataFuture = _loadData();
 
@@ -47,7 +46,6 @@ class Menu extends StatelessWidget {
             child: Center(child: CircularProgressIndicator()),
           );
         }
-
         return SliverGrid(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
