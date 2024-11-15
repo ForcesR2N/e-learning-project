@@ -10,7 +10,7 @@ import 'package:e_learning/component/my_color.dart';
 import 'package:e_learning/utils/responsive_layout.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();

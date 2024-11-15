@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           child: menus[bottomNavController.selectedIndex.value],
         ),
         bottomNavigationBar: Container(
-          height: 90, 
+          height: 90,
           decoration: BoxDecoration(
             color: AppColor.primaryBlue,
             boxShadow: [
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedContainer(
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
                 padding: EdgeInsets.all(isSelected ? 8 : 6),
                 decoration: BoxDecoration(

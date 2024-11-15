@@ -6,11 +6,11 @@ class Responsive extends StatelessWidget {
   final Widget? desktop;
 
   const Responsive({
-    Key? key,
+    super.key,
     required this.mobile,
     this.tablet,
     this.desktop,
-  }) : super(key: key);
+  });
 
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 768;
@@ -38,7 +38,6 @@ class Responsive extends StatelessWidget {
   }
 }
 
-// Extension methods for consistent spacing and sizing
 extension ResponsiveSpacing on BuildContext {
   double get spacing => Responsive.isTablet(this) ? 16.0 : 12.0;
   double get radius => Responsive.isTablet(this) ? 16.0 : 12.0;
