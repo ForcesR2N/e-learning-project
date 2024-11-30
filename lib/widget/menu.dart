@@ -42,7 +42,7 @@ class Menu extends StatelessWidget {
       future: _dataFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SliverToBoxAdapter(
+          return const SliverToBoxAdapter(
             child: Center(child: CircularProgressIndicator()),
           );
         }
@@ -72,7 +72,7 @@ class Menu extends StatelessWidget {
 
         return GridView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             mainAxisSpacing: context.spacing,
@@ -88,7 +88,6 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildMenuItem(BuildContext context, Data data) {
-    final isTablet = Responsive.isTablet(context);
     final isLandscape = Responsive.isLandscape(context);
 
     return GestureDetector(
@@ -127,7 +126,7 @@ class Menu extends StatelessWidget {
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 3,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
